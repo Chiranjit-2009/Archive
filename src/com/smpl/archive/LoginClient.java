@@ -37,7 +37,7 @@ public class LoginClient implements IFileProcessor {
                     archiveInfo = archiveManager.getArchiveInfo(newRequestId, token);
                     if (archiveInfo != null) {
                         if (firstLog) {
-                            System.out.println("GET Archive Info HTTP Status Code: 200"); // Log only once
+                            logger.info("GET Archive Info HTTP Status Code: 200"); // Log only once
                             firstLog = false; // Set the flag to false after logging
                         }
 
