@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <folders>
+        <folder>
+            <path>D:\TestWatchFolder</path>
+            <validExtensions>.mxf</validExtensions>
+            <stabilizationPeriod>2000</stabilizationPeriod> # Files may be growing, it needs to be stable for at least  this period to process
+            <fileProcessorClass>com.smpl.archive.LoginClient</fileProcessorClass>
+			<AppParams></AppParams> #The interface setAppParams will be called once and it is up to the app to store it, use it
+			<postAction Result="OnSuccess">
+				<Action>MOVE</Action>#DELETE,MOVE,RENAME
+				<ActionFolder>D:\TestWatchFolder\Processed</ActionFolder>
+				<PurgeAge>1</PurgeAge> # purge files when it becomes Purge Age days older 
+			</postAction>
+			<postAction Result="OnFailure">
+				<Action>MOVE</Action>#DELETE,MOVE,RENAME
+				<ActionFolder>D:\TestWatchFolder\Error</ActionFolder>
+				<PurgeAge>3</PurgeAge> # purge files when it becomes Purge Age days older r 
+			</postAction>		
+        </folder>
+        <!--<folder>
+            <path>C:\test\wft_2</path>
+            <validExtensions>.jpg,.png</validExtensions>
+            <stabilizationPeriod>2000</stabilizationPeriod>
+            <fileProcessorClass>com.smpl.util.watchfolder.AssetChangeXMLProcessor</fileProcessorClass>
+			<postAction Result="OnSuccess">
+				<Action>DELETE</Action>#DELETE,MOVE,RENAME
+			</postAction>
+			<postAction Result="OnFailure">
+				<Action>MOVE</Action>#DELETE,MOVE,RENAME
+				<ActionFolder>C:\test\wft\Error</ActionFolder>
+				<PurgeAge>3</PurgeAge> # purge files when it becomes Purge Age days older 
+			</postAction>			
+        </folder>-->		
+	
+    </folders>
+</config>

@@ -1,0 +1,40 @@
+Jan 22, 2025 11:44:25 AM com.smpl.archive.LoginClient main
+INFO: Initializing FolderMonitor...
+Jan 22, 2025 11:44:25 AM com.smpl.archive.LoginClient setAppParams
+FINE: setAppParams called with: 
+Jan 22, 2025 11:44:25 AM com.smpl.archive.LoginClient main
+INFO: Initializing LoginClient...
+Jan 22, 2025 11:44:25 AM com.smpl.archive.LoginClient main
+INFO: Assigning LoginClient to FolderConfig: D:\TestWatchFolder
+Jan 22, 2025 11:44:25 AM com.smpl.archive.LoginClient main
+INFO: FolderMonitor is running and waiting for changes...
+Jan 22, 2025 12:16:33 PM com.smpl.archive.LoginClient main
+INFO: Initializing FolderMonitor...
+Jan 22, 2025 12:16:33 PM com.smpl.archive.LoginClient setAppParams
+FINE: setAppParams called with: 
+Jan 22, 2025 12:16:33 PM com.smpl.archive.LoginClient main
+INFO: Initializing LoginClient...
+Jan 22, 2025 12:16:33 PM com.smpl.archive.LoginClient main
+INFO: Assigning LoginClient to FolderConfig: D:\TestWatchFolder
+Jan 22, 2025 12:16:33 PM com.smpl.archive.LoginClient main
+INFO: FolderMonitor is running and waiting for changes...
+Jan 22, 2025 12:16:58 PM com.smpl.archive.LoginClient processFiles
+INFO: Starting processFiles for folder: D:\TestWatchFolder
+Jan 22, 2025 12:17:02 PM com.smpl.archive.LoginManager login
+INFO: Login HTTP Status Code: 200
+Jan 22, 2025 12:17:02 PM com.smpl.archive.LoginManager login
+INFO: Bearer Token retrieved successfully.
+Jan 22, 2025 12:17:02 PM com.smpl.archive.LoginClient processFiles
+INFO: Monitoring existing files in the folder.
+Jan 22, 2025 12:17:02 PM com.smpl.archive.LoginClient processFile
+INFO: Processing file: md_demo1.mxf
+Jan 22, 2025 12:17:02 PM com.smpl.archive.ArchiveManager isFileArchived
+INFO: Constructed URL for checking file archive: http://3.144.242.95:9443/manager/objects/info?objectName=md_demo1.mxf&collectionName=Test
+Jan 22, 2025 12:17:15 PM com.smpl.archive.ArchiveManager isFileArchived
+INFO: GET Request HTTP Status Code: 404
+Jan 22, 2025 12:17:15 PM com.smpl.archive.ArchiveManager isFileArchived
+WARNING: File not found in archive: md_demo1.mxf
+Jan 22, 2025 12:17:15 PM com.smpl.archive.LoginClient processFile
+INFO: File not archived. Proceeding to archive: md_demo1.mxf
+Jan 22, 2025 12:17:15 PM com.smpl.archive.ArchiveManager archiveFile
+INFO: Constructed URL for archiving file: http://3.144.242.95:9443/manager/requests/archive
