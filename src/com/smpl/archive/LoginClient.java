@@ -80,7 +80,7 @@ public class LoginClient implements IFileProcessor {
             for (FolderConfig folderConfig : folderMonitor.getFolderConfigs()) {
                 folderConfig.setFileProcessor(client);
             }
-            folderMonitor.getFolderConfigs(); // Assuming processAllFiles takes an IFileProcessor
+//            folderMonitor.getFolderConfigs(); // Assuming processAllFiles takes an IFileProcessor
         } catch (Exception e) {
             System.out.println("An error occurred while initializing the application:" + e);
         }
