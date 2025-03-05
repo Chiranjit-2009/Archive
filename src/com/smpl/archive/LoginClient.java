@@ -21,7 +21,7 @@ public class LoginClient implements IFileProcessor {
     @Override
     public boolean processFiles(Path path, FolderConfig fc) {
         String objectName = path.getFileName().toString(); 
-        String token = loginManager.login(); 
+        String token = loginManager.getToken(); 
 
         if (archiveManager.isFileArchived(objectName, token)) {
             System.out.println("File already archived:" +objectName);
