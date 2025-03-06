@@ -18,6 +18,7 @@ public class ArchiveManager {
 
      // Collection name used for archiving files.
     private static final String COLLECTION_NAME = "Test";
+    
 
     // Checks if a file is already archived.    
     public boolean isFileArchived(String objectName, String token) {
