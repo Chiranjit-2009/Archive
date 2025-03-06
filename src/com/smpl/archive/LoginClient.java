@@ -20,8 +20,8 @@ public class LoginClient implements IFileProcessor {
 
     @Override
     public boolean processFiles(Path path, FolderConfig fc) {
-        String objectName = path.getFileName().toString(); // Assuming objectName is the file name
-        String token = loginManager.login(); // Assuming token is retrieved from LoginManager
+        String objectName = path.getFileName().toString(); 
+        String token = loginManager.getToken(); 
 
         if (archiveManager.isFileArchived(objectName, token)) {
             System.out.println("File already archived:" +objectName);
@@ -65,7 +65,7 @@ public class LoginClient implements IFileProcessor {
                 } while (true);
 
             } else {
-                logger.log(Level.SEVERE, "Failed to get Request ID for file: {0}", objectName);
+                System.out.println("Failed to get Request ID for file:" + objectName);
                 return false;
             }
         }
@@ -82,7 +82,7 @@ public class LoginClient implements IFileProcessor {
             }
             folderMonitor.getFolderConfigs(); // Assuming processAllFiles takes an IFileProcessor
         } catch (Exception e) {
-            Logger.getLogger(LoginClient.class.getName()).log(Level.SEVERE, "An error occurred while initializing the application:", e);
+            System.out.println("An error occurred while initializing the application:" + e);
         }
     }
 
