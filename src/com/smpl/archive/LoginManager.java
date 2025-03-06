@@ -5,31 +5,40 @@
 package com.smpl.archive;
 
 import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
-
+import java.util.Properties;
 
 public class LoginManager {
+    public static final String CONFIG_FILE_PATH = ".//Config//config.properties";
+//    private static final String USERNAME = "superadmin";
+//    private static final String PASSWORD = "ATempo@123#xyz:";  
+    private String token;
 
-    private static final String USERNAME = "superadmin";
-    private static final String PASSWORD = "ATempo@123#xyz:";
-
-    public String login() {
+    public String login() throws FileNotFoundException, IOException {
         String token = null;
+        Properties properties = new Properties();
+        FileInputStream fis = new FileInputStream(CONFIG_FILE_PATH);
+        properties.load(fis);
+        String ip =properties.getProperty("db.ip");
+        String userName =properties.getProperty("db.username");
+        String password =properties.getProperty("db.password");
         try {
-            String apiUrl = "http://3.144.242.95:9443/manager/users/login";
+
+            String apiUrl = "http://"+ip+":9443/manager/users/login";
             URL url = new URL(apiUrl);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("POST");
             connection.setRequestProperty("Content-Type", "application/json");
             connection.setRequestProperty("Accept", "application/json");
             connection.setDoOutput(true);
-
-            String requestBody = "{ \"user\": \"" + USERNAME + "\", \"password\": \"" + PASSWORD + "\" }";
+            String requestBody = "{ \"user\": \"" + userName + "\", \"password\": \"" + password + "\" }";
             try (OutputStream os = connection.getOutputStream()) {
                 byte[] input = requestBody.getBytes(StandardCharsets.UTF_8);
                 os.write(input, 0, input.length);
@@ -49,8 +58,10 @@ public class LoginManager {
                 }
                 token = response.toString().replace("{\"token\":\"", "").replace("\"}", "");
                 System.out.println("Bearer Token: " + token);
+                this.token=token;
             } else {
                 System.out.println("Failed to log in. Status Code: " + status);
+                this.token=null;
             }
             connection.disconnect();
         } catch (IOException e) {
@@ -58,10 +69,9 @@ public class LoginManager {
         return token;
     }
 
-    String getToken() {
-        return null;
-        
-    }
+public String getToken() {
+    return token; // Return the stored token
+}
 
     
 }
