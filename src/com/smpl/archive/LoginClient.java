@@ -74,13 +74,13 @@ public class LoginClient implements IFileProcessor {
 
     public static void main(String[] args) {
         try {
-//            String configFilePath = ".\\Config\\WatcherConfig.xml";
-//            FolderMonitor folderMonitor = new FolderMonitor(configFilePath);
+            String configFilePath = ".\\Config\\WatcherConfig.xml";
+            FolderMonitor folderMonitor = new FolderMonitor(configFilePath);
             LoginClient client = new LoginClient();
-//            for (FolderConfig folderConfig : folderMonitor.getFolderConfigs()) {
-//                folderConfig.setFileProcessor(client);
-//            }
-//            folderMonitor.getFolderConfigs(); // Assuming processAllFiles takes an IFileProcessor
+            for (FolderConfig folderConfig : folderMonitor.getFolderConfigs()) {
+                folderConfig.setFileProcessor(client);
+            }
+            folderMonitor.getFolderConfigs(); // Assuming processAllFiles takes an IFileProcessor
         } catch (Exception e) {
             System.out.println("An error occurred while initializing the application:" + e);
         }
