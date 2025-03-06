@@ -18,12 +18,14 @@ public class ArchiveManager {
 
      // Collection name used for archiving files.
     private static final String COLLECTION_NAME = "Test";
-    
+    LoginManager lm = new LoginManager();
 
     // Checks if a file is already archived.    
     public boolean isFileArchived(String objectName, String token) {
+        
         try {
-            String baseUrl = "http://3.144.242.95:9443/manager/objects/info";
+            String ip = lm.getDatabaseIp();
+            String baseUrl = "http://"+ip+"/manager/objects/info";
             String urlWithParams = baseUrl + "?objectName=" + URLEncoder.encode(objectName, "UTF-8") + "&collectionName=" + URLEncoder.encode(COLLECTION_NAME, "UTF-8");
             System.out.println("Constructed URL: " + urlWithParams);
 
@@ -60,7 +62,8 @@ public class ArchiveManager {
  // Archives a specified file and returns the request ID.
      public String archiveFile(String objectName, String token) {
         try {
-            String apiUrl = "http://3.144.242.95:9443/manager/requests/archive";
+            String ip = lm.getDatabaseIp();
+            String apiUrl = "http://"+ip+"/manager/requests/archive";
             URL url = new URL(apiUrl);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("POST");
@@ -112,7 +115,8 @@ public class ArchiveManager {
      // Retrieves archive information based on request ID.
      public JSONObject getArchiveInfo(String requestId, String token) {
         try {
-            String apiUrl = "http://3.144.242.95:9443/manager/requests/" + requestId;
+            String ip = lm.getDatabaseIp();
+            String apiUrl = "http://"+ip+"/manager/requests/" + requestId;
             URL url = new URL(apiUrl);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");

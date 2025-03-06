@@ -17,6 +17,7 @@ import java.util.Properties;
 
 public class LoginManager {
     public static final String CONFIG_FILE_PATH = ".//Config//config.properties";
+    
 //    private static final String USERNAME = "superadmin";
 //    private static final String PASSWORD = "ATempo@123#xyz:";  
     private String token;
@@ -24,9 +25,10 @@ public class LoginManager {
     public String login() throws FileNotFoundException, IOException {
         String token = null;
         Properties properties = new Properties();
-        FileInputStream fis = new FileInputStream(CONFIG_FILE_PATH);
-        properties.load(fis);
-        String ip =properties.getProperty("db.ip");
+//        FileInputStream fis = new FileInputStream(CONFIG_FILE_PATH);
+//        properties.load(fis);
+        
+        String ip = getDatabaseIp();
         String userName =properties.getProperty("db.username");
         String password =properties.getProperty("db.password");
         try {
@@ -73,5 +75,12 @@ public String getToken() {
     return token; // Return the stored token
 }
 
+public String getDatabaseIp() throws IOException{
+   Properties properties = new Properties();
+      try(FileInputStream fis = new FileInputStream(CONFIG_FILE_PATH)){
+        properties.load(fis);
+        return properties.getProperty("db.ip"); 
+      }
+}
     
 }
